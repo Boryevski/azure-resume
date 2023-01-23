@@ -11,6 +11,12 @@ on:
 
 jobs:
   build:
+    runs-on: ubuntu-latest
+    steps:    
+    - uses: actions/checkout@v3
+    - uses: azure/login@v1
+      with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
     - name: Install Azure cli
         run:
           sudo apt-get install ca-certificates curl apt-transport-https lsb-release gnupg
@@ -19,13 +25,6 @@ jobs:
           echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $AZ_REPO main" | sudo tee /etc/apt/sources.list.d/azure-cli.list
           sudo apt-get update
           sudo apt-get install azure-cli
-    runs-on: ubuntu-latest
-    steps:    
-    - uses: actions/checkout@v3
-    - uses: azure/login@v1
-      with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-
     - name: Upload to blob storage
       uses: azure/CLI@v1
       with:
