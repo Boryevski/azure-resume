@@ -15,6 +15,7 @@ jobs:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
     - name: Upload to blob storage
       uses: azure/CLI@v1
+      with:
         inlineScript: |
             az storage blob upload-batch -d $web -auth-key --account-name azureresume1234 -s *
     - name: Purge CDN endpoint
