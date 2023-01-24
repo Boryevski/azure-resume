@@ -16,7 +16,7 @@ jobs:
     - name: Upload to blob storage
       uses: azure/CLI@v1
       uses: actions/checkout@v3
-          source_dir: /sfrontend/
+          source_dir: 'frontend/'
           container_name: $web
           connection_string: ${{ secrets.ConnectionString }}
           # WARNING: this will overwrite existing blobs in your blob storage
